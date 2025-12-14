@@ -68,13 +68,23 @@ const getMe = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    const existingUser = await User.findOne({ email: req.body.email });
+    const { email, phone_number } = req.body;
 
-    if (existingUser) {
+    const emailExists = await User.findOne({ email });
+    if (emailExists) {
       return res.status(409).json({
         status: "error",
         code: "DUPLICATE_EMAIL",
         message: "Email already exists",
+      });
+    }
+
+    const phoneExists = await User.findOne({ phone_number });
+    if (phoneExists) {
+      return res.status(409).json({
+        status: "error",
+        code: "DUPLICATE_PHONE_NUMBER",
+        message: "Phone number already exists",
       });
     }
     const user = new User(req.body);
