@@ -77,6 +77,7 @@ const createUser = async (req, res) => {
       data: user,
     });
   } catch (error) {
+    console.error(error);
     const err = errorCodes.INTERNAL_ERROR;
     return res.status(err.status).json(errorResponse(req, err));
   }
