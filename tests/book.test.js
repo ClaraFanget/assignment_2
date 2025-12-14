@@ -70,8 +70,8 @@ describe("BOOK API", () => {
 
     expect(res.statusCode).toBe(200);
     expect(res.body.status).toBe("success");
-    expect(Array.isArray(res.body.data)).toBe(true);
-    expect(res.body.data.length).toBe(1);
+    expect(Array.isArray(res.body.data.content)).toBe(true);
+    expect(res.body.data.content.length).toBe(1);
   });
 
   // ============================

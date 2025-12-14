@@ -68,9 +68,9 @@ describe("COUPON API", () => {
 
     expect(res.statusCode).toBe(200);
     expect(res.body.status).toBe("success");
-    expect(Array.isArray(res.body.data)).toBe(true);
-    expect(res.body.data.length).toBe(1);
-    expect(res.body.data[0]).toHaveProperty("code", "PROMO20");
+    expect(Array.isArray(res.body.data.content)).toBe(true);
+    expect(res.body.data.content.length).toBe(1);
+    expect(res.body.data.content[0]).toHaveProperty("code", "PROMO20");
   });
 
   // ============================
