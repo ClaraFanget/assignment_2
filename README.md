@@ -124,9 +124,9 @@ repo-root
 ├─ postman/
 │  └─ project.postman_collection.json
 ├─ docs/
-│  ├─ api-design.md
-│  ├─ db-schema.md
-│  └─ architecture.md
+│  ├─ API-docs.pdf
+│  ├─ DB-docs.pdf
+│  └─ ERD.pdf
 ├─ src/
 │  ├─ controllers/
 │  ├─ routes/
