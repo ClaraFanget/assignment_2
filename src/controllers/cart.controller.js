@@ -179,7 +179,7 @@ const deleteCartItem = async (req, res) => {
 
     const totalAmount = cart.total_amount - book.price * item.quantity;
 
-    await item.remove();
+    await CartItem.findByIdAndDelete(item._id);
 
     await Cart.findByIdAndUpdate(cart._id, { total_amount: totalAmount });
 
