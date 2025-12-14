@@ -33,7 +33,7 @@ const packageJson = require("../package.json");
  *                   format: date-time
  *                   example: "2025-12-14T15:32:22.123Z"
  */
-router.get("/health", (req, res) => {
+router.get("/", (req, res) => {
   res.status(200).json({
     status: "ok",
     version: packageJson.version,
