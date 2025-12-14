@@ -6,11 +6,7 @@ const adminOnly = require("../middlewares/admin.js");
 const activeUser = require("../middlewares/active-user.js");
 const listQuery = require("../middlewares/list-query.js");
 
-const {
-  createUserDTO,
-  updateMeDTO,
-  deactivateUserDTO,
-} = require("../dto/user.dto.js");
+const { createUserDTO, updateMeDTO } = require("../dto/user.dto.js");
 
 /**
  * @swagger
@@ -263,7 +259,6 @@ router.delete(
   "/:id/deactivate",
   authRequired,
   adminOnly,
-  validate(deactivateUserDTO),
   userController.deactivateUser
 );
 
