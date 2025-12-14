@@ -33,12 +33,13 @@ router.use("/orders", require("./routes/order.route.js"));
 router.use("/", require("./routes/review.route.js"));
 router.use("/", require("./routes/comment.route.js"));
 router.use("/coupons", require("./routes/coupon.route.js"));
+const health = require("./routes/health.route.js");
 
 app.get("/", (req, res) => {
   res.send("Welcome on the bookstore API");
 });
 
-app.use("/", router);
+app.use("/", health, router);
 
 app.use(errorHandler);
 
