@@ -19,9 +19,6 @@ const {
  *     User:
  *       type: object
  *       properties:
- *         _id:
- *           type: string
- *           example: "65f0d4452a6a62db90ef7021"
  *         first_name:
  *           type: string
  *           example: "John"
@@ -35,13 +32,13 @@ const {
  *         email:
  *           type: string
  *           example: "john@example.com"
+ *         password:
+ *           type: string
+ *           example: "password123"
  *         gender:
  *           type: string
  *           enum: [female, male, other]
  *           example: "male"
- *         is_admin:
- *           type: boolean
- *           example: false
  *         address:
  *           type: string
  *           example: "10 rue de Paris"
@@ -252,12 +249,6 @@ router.get("/", listQuery, authRequired, adminOnly, userController.getUsers);
  *         required: true
  *         schema:
  *           type: string
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/DeactivateUserDTO'
  *     responses:
  *       200:
  *         description: User deactivated

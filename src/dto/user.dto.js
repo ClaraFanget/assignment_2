@@ -22,5 +22,3 @@ exports.updateMeDTO = Joi.object({
   address: Joi.string(),
   phone_number: Joi.string().pattern(/^[0-9]{10}$/),
 });
-
-exports.deactivateUserDTO = Joi.object({});
