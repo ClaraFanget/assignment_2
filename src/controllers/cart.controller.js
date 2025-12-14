@@ -89,6 +89,7 @@ const addCartItem = async (req, res) => {
       data: item,
     });
   } catch (error) {
+    console.error(error);
     const err = errorCodes.INTERNAL_ERROR;
     return res.status(err.status).json(errorResponse(req, err));
   }
