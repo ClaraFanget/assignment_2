@@ -61,14 +61,19 @@ const { createCouponDTO, updateCouponDTO } = require("../dto/coupon.dto.js");
  *       properties:
  *         code:
  *           type: string
+ *           example: "HELLO50"
  *         discount_rate:
  *           type: number
+ *           example: 50
  *         start_at:
  *           type: date
+ *           example: 2026-01-01
  *         end_at:
  *           type: date
+ *           example: 2026-02-02
  *         is_valid:
  *           type: boolean
+ *           example: false
  */
 
 /**
