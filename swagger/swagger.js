@@ -11,17 +11,15 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:3000",
-        description: "Local server",
+        url: "/",
       },
     ],
     components: {
       securitySchemes: {
         bearerAuth: {
-          // Arbitrary name for the scheme
           type: "http",
           scheme: "bearer",
-          bearerFormat: "JWT", // Optional, for documentation clarity
+          bearerFormat: "JWT",
         },
       },
     },
