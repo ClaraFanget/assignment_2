@@ -153,26 +153,43 @@ const updateCartItem = async (req, res) => {
 
 const deleteCartItem = async (req, res) => {
   try {
-    const deleted = await CartItem.findByIdAndDelete(req.params.itemId);
-
-    if (!deleted) {
+    const item = await CartItem.findById(req.params.itemId);
+    if (!item) {
       const err = errorCodes.NOT_FOUND;
       return res
         .status(err.status)
         .json(errorResponse(req, err, null, "Cart item not found"));
     }
 
-    const totalAmount = await recalculateCartTotal(deleted.cart_id);
+    const book = await Book.findById(item.book_id);
+    if (!book) {
+      const err = errorCodes.NOT_FOUND;
+      return res
+        .status(err.status)
+        .json(errorResponse(req, err, null, "Book not found"));
+    }
 
-    await Cart.findByIdAndUpdate(deleted.cart_id, {
-      total_amount: totalAmount,
-    });
+    const cart = await Cart.findById(item.cart_id);
+    if (!cart) {
+      const err = errorCodes.NOT_FOUND;
+      return res
+        .status(err.status)
+        .json(errorResponse(req, err, null, "Cart not found"));
+    }
+
+    const totalAmount = cart.total_amount - book.price * item.quantity;
+
+    await item.remove();
+
+    await Cart.findByIdAndUpdate(cart._id, { total_amount: totalAmount });
 
     res.status(200).json({
       status: "success",
       message: "Item removed from cart",
+      total_amount: totalAmount,
     });
   } catch (error) {
+    console.error(error);
     const err = errorCodes.INTERNAL_ERROR;
     return res.status(err.status).json(errorResponse(req, err));
   }
