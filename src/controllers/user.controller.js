@@ -68,6 +68,15 @@ const getMe = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
+    const existingUser = await User.findOne({ email: req.body.email });
+
+    if (existingUser) {
+      return res.status(409).json({
+        status: "error",
+        code: "DUPLICATE_EMAIL",
+        message: "Email already exists",
+      });
+    }
     const user = new User(req.body);
     await user.save();
 
