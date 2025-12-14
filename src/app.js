@@ -39,7 +39,8 @@ app.get("/", (req, res) => {
   res.send("Welcome on the bookstore API");
 });
 
-app.use("/", health, router);
+app.use("/", health);
+app.use("/", router);
 
 app.use(errorHandler);
 
